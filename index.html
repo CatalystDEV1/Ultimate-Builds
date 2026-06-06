@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Builds — Luxury Carpentry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0e0d0b;
+    --off-black: #161512;
+    --charcoal: #1e1c18;
+    --dark-warm: #252219;
+    --mid: #5a5244;
+    --warm-grey: #8a7f72;
+    --cream: #f2ede6;
+    --off-white: #faf8f4;
+    --white: #ffffff;
+    --gold: #b8924a;
+    --gold-light: #d4aa6a;
+    --gold-dark: #8a6a30;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--off-black);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(184,146,74,0.4);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease-out, width 0.2s, height 0.2s;
+  }
+  body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 14px; height: 14px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    height: 80px;
+    transition: background 0.4s, height 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(14,13,11,0.95);
+    backdrop-filter: blur(12px);
+    height: 64px;
+    border-bottom: 1px solid rgba(184,146,74,0.12);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none;
+  }
+  .nav-logo img { height: 36px; width: auto; filter: brightness(10); }
+  .nav-logo-text {
+    font-family: var(--sans);
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .nav-logo-text strong { display: block; font-weight: 400; font-size: 13px; letter-spacing: 0.25em; }
+  .nav-links { display: flex; align-items: center; gap: 48px; }
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -3px; left: 0; right: 0; height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(184,146,74,0.4);
+    padding: 10px 22px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--off-black) !important; border-color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 60px 80px 60px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-right {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-image-placeholder {
+    width: 100%; height: 100%;
+    background: var(--charcoal);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 16px;
+  }
+  .image-placeholder-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .image-placeholder-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--mid);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.4;
+  }
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block; width: 32px; height: 1px;
+    background: var(--gold); vertical-align: middle;
+    margin-right: 14px;
+  }
+  .hero-heading {
+    font-family: var(--serif);
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: var(--off-white);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+  .hero-heading em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--warm-grey);
+    max-width: 420px;
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+  .hero-actions {
+    display: flex; align-items: center; gap: 36px;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+  .btn-primary {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--off-black);
+    background: var(--gold);
+    text-decoration: none;
+    padding: 16px 36px;
+    transition: background 0.3s, transform 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: color 0.3s;
+  }
+  .btn-ghost:hover { color: var(--cream); }
+  .btn-ghost-line {
+    display: inline-block; width: 28px; height: 1px;
+    background: currentColor; transition: width 0.3s;
+  }
+  .btn-ghost:hover .btn-ghost-line { width: 40px; }
+  .hero-stat-bar {
+    position: absolute; bottom: 0; right: 0; left: 50%;
+    border-top: 1px solid rgba(184,146,74,0.15);
+    display: flex;
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+  .hero-stat {
+    flex: 1;
+    padding: 24px 32px;
+    border-right: 1px solid rgba(184,146,74,0.1);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--off-white);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hero-stat-label {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .hero-scroll {
+    position: absolute;
+    left: 60px; bottom: 40px;
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--mid);
+    writing-mode: vertical-rl;
+    opacity: 0;
+    animation: fadeIn 1.2s 1.4s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+    animation: scrollPulse 2s 2s infinite;
+  }
+
+  /* SECTION COMMONS */
+  section { position: relative; }
+  .section-label {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block; width: 24px; height: 1px; background: var(--gold);
+  }
+  .section-heading {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 60px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--off-white);
+    letter-spacing: -0.01em;
+  }
+  .section-heading em { font-style: italic; color: var(--gold-light); }
+
+  /* ABOUT */
+  .about {
+    padding: 140px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    background: var(--off-black);
+  }
+  .about-image-col { position: relative; }
+  .about-img-main {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--charcoal);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+  }
+  .about-img-accent {
+    position: absolute;
+    width: 55%;
+    aspect-ratio: 1/1;
+    background: var(--dark-warm);
+    bottom: -40px; right: -40px;
+    border: 1px solid rgba(184,146,74,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px;
+  }
+  .about-years {
+    position: absolute;
+    top: 40px; left: -30px;
+    background: var(--gold);
+    padding: 24px;
+    text-align: center;
+  }
+  .about-years span {
+    display: block;
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--off-black);
+    line-height: 1;
+  }
+  .about-years small {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--off-black);
+    opacity: 0.7;
+  }
+  .about-content {}
+  .about-lead {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--off-white);
+    margin: 32px 0 28px;
+    font-style: italic;
+  }
+  .about-body {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--warm-grey);
+    margin-bottom: 48px;
+  }
+  .about-body p { margin-bottom: 18px; }
+  .about-signature {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+  }
+  .about-title {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .about-divider {
+    width: 1px; height: 40px;
+    background: rgba(184,146,74,0.3);
+    margin: 20px 0;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 140px 60px;
+    background: var(--charcoal);
+  }
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 80px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(184,146,74,0.1);
+  }
+  .services-intro {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--warm-grey);
+    font-weight: 300;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(184,146,74,0.1);
+  }
+  .service-card {
+    background: var(--charcoal);
+    padding: 52px 44px;
+    position: relative;
+    transition: background 0.4s;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .service-card:hover { background: var(--dark-warm); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0.6;
+  }
+  .service-icon {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(184,146,74,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 28px;
+    transition: border-color 0.3s;
+  }
+  .service-card:hover .service-icon { border-color: var(--gold); }
+  .service-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .service-name {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--off-white);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .service-desc {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--warm-grey);
+    margin-bottom: 32px;
+  }
+  .service-link {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+    transition: gap 0.3s;
+  }
+  .service-card:hover .service-link { gap: 16px; }
+
+  /* PORTFOLIO */
+  .portfolio {
+    padding: 140px 0;
+    background: var(--off-black);
+  }
+  .portfolio-header {
+    padding: 0 60px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 64px;
+  }
+  .portfolio-all {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 12px;
+    transition: color 0.3s;
+  }
+  .portfolio-all:hover { color: var(--gold); }
+  .portfolio-filters {
+    display: flex; gap: 28px;
+    padding: 0 60px;
+    margin-bottom: 48px;
+  }
+  .filter-btn {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    background: none; border: none; cursor: none;
+    padding: 0; padding-bottom: 8px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .filter-btn.active, .filter-btn:hover { color: var(--gold); border-color: var(--gold); }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+    padding: 0 60px;
+  }
+  .portfolio-item {
+    position: relative; overflow: hidden;
+    background: var(--charcoal);
+    cursor: none;
+  }
+  .portfolio-item:nth-child(1) { grid-column: span 7; grid-row: span 2; }
+  .portfolio-item:nth-child(2) { grid-column: span 5; }
+  .portfolio-item:nth-child(3) { grid-column: span 5; }
+  .portfolio-item:nth-child(4) { grid-column: span 4; }
+  .portfolio-item:nth-child(5) { grid-column: span 4; }
+  .portfolio-img {
+    width: 100%;
+    background: var(--charcoal);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px;
+    transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .portfolio-item:nth-child(1) .portfolio-img { height: 560px; }
+  .portfolio-item:nth-child(2) .portfolio-img,
+  .portfolio-item:nth-child(3) .portfolio-img { height: 270px; }
+  .portfolio-item:nth-child(4) .portfolio-img,
+  .portfolio-item:nth-child(5) .portfolio-img { height: 220px; }
+  .portfolio-item:hover .portfolio-img { transform: scale(1.04); }
+  .portfolio-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(14,13,11,0.92) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 28px;
+  }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+  .portfolio-cat {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .portfolio-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--off-white);
+  }
+
+  /* PROCESS */
+  .process {
+    padding: 140px 60px;
+    background: var(--dark-warm);
+  }
+  .process-header { margin-bottom: 80px; }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 26px; left: 13%;
+    width: 75%; height: 1px;
+    background: linear-gradient(to right, rgba(184,146,74,0.3), rgba(184,146,74,0.3));
+  }
+  .process-step { padding: 0 32px 0 0; }
+  .step-dot-wrap { display: flex; align-items: center; margin-bottom: 40px; }
+  .step-dot {
+    width: 52px; height: 52px;
+    border: 1px solid rgba(184,146,74,0.4);
+    background: var(--dark-warm);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; position: relative; z-index: 1;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .process-step:hover .step-dot { background: var(--gold); border-color: var(--gold); }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--gold);
+    transition: color 0.3s;
+  }
+  .process-step:hover .step-num { color: var(--off-black); }
+  .step-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--off-white);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .step-desc {
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--warm-grey);
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 140px 60px;
+    background: var(--off-black);
+  }
+  .testimonials-header { margin-bottom: 80px; }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(184,146,74,0.1);
+  }
+  .testimonial {
+    background: var(--off-black);
+    padding: 52px 44px;
+    position: relative;
+  }
+  .testimonial-quote {
+    font-family: var(--serif);
+    font-size: 56px;
+    color: var(--gold);
+    line-height: 0.8;
+    margin-bottom: 24px;
+    opacity: 0.35;
+  }
+  .testimonial-text {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--off-white);
+    margin-bottom: 36px;
+  }
+  .testimonial-divider {
+    width: 32px; height: 1px;
+    background: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0.5;
+  }
+  .testimonial-author {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--cream);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .testimonial-role {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--mid);
+    letter-spacing: 0.1em;
+  }
+
+  /* CTA BAND */
+  .cta-band {
+    padding: 120px 60px;
+    background: var(--charcoal);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 60px;
+    border-top: 1px solid rgba(184,146,74,0.1);
+    border-bottom: 1px solid rgba(184,146,74,0.1);
+  }
+  .cta-heading {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--off-white);
+  }
+  .cta-heading em { font-style: italic; color: var(--gold-light); }
+  .cta-sub {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-grey);
+    margin-top: 20px;
+    line-height: 1.7;
+  }
+  .cta-actions { display: flex; flex-direction: column; gap: 16px; align-items: flex-end; }
+
+  /* CONTACT FORM */
+  .contact {
+    padding: 140px 60px;
+    background: var(--off-black);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .contact-info {}
+  .contact-detail {
+    margin-top: 48px;
+    display: flex; flex-direction: column; gap: 28px;
+  }
+  .contact-item {}
+  .contact-item-label {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .contact-item-value {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--off-white);
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 0; }
+  .form-group { margin-bottom: 28px; }
+  .form-label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 12px;
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(184,146,74,0.2);
+    padding: 12px 0;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--cream);
+    outline: none;
+    transition: border-color 0.3s;
+    appearance: none;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--mid); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-select { cursor: none; }
+  .form-select option { background: var(--off-black); }
+  .form-textarea { resize: none; height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .form-submit {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--off-black);
+    background: var(--gold);
+    border: none;
+    padding: 18px 40px;
+    cursor: none;
+    transition: background 0.3s, transform 0.3s;
+    margin-top: 20px;
+    align-self: flex-start;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .form-submit svg { width: 16px; height: 16px; stroke: var(--off-black); fill: none; stroke-width: 1.5; }
+
+  /* FOOTER */
+  footer {
+    padding: 80px 60px 48px;
+    background: var(--black);
+    border-top: 1px solid rgba(184,146,74,0.08);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 64px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid rgba(184,146,74,0.08);
+  }
+  .footer-brand {}
+  .footer-logo img { height: 32px; filter: brightness(10); margin-bottom: 20px; }
+  .footer-tagline {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--warm-grey);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .footer-social { display: flex; gap: 16px; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(184,146,74,0.2);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .social-link:hover { border-color: var(--gold); background: rgba(184,146,74,0.1); }
+  .social-link svg { width: 14px; height: 14px; stroke: var(--warm-grey); fill: none; stroke-width: 1.5; }
+  .footer-col-title {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .footer-links { display: flex; flex-direction: column; gap: 14px; }
+  .footer-link {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--warm-grey);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-link:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--mid);
+  }
+  .footer-copy span { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Horizontal gold rule */
+  .gold-rule {
+    border: none;
+    border-top: 1px solid rgba(184,146,74,0.2);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <svg width="44" height="36" viewBox="0 0 200 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="10" width="14" height="110" fill="#b8924a"/>
+      <rect x="10" y="108" width="70" height="12" fill="#b8924a"/>
+      <rect x="10" y="10" width="70" height="12" fill="#b8924a"/>
+      <polygon points="60,80 120,20 180,80" fill="#b8924a"/>
+      <polygon points="90,80 130,44 170,80" fill="#0e0d0b"/>
+      <circle cx="155" cy="68" r="8" fill="#b8924a"/>
+      <circle cx="155" cy="68" r="4" fill="#0e0d0b"/>
+    </svg>
+    <div class="nav-logo-text">
+      <strong>Ultimate Builds</strong>
+      Luxury Carpentry
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#process">Process</a>
+    <a href="#contact" class="nav-cta">Begin a Project</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Gold Coast · Est. 2015</p>
+    <h1 class="hero-heading">Where Timber<br>Becomes <em>Art</em></h1>
+    <p class="hero-sub">Bespoke carpentry and custom furniture crafted with uncompromising precision. Every piece is a conversation between the maker and the material — designed to endure for generations.</p>
+    <div class="hero-actions">
+      <a href="#portfolio" class="btn-primary">View Portfolio</a>
+      <a href="#about" class="btn-ghost"><span class="btn-ghost-line"></span> Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-placeholder">
+      <div class="image-placeholder-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+      <span class="image-placeholder-label">Hero Image</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+  <div class="hero-stat-bar">
+    <div class="hero-stat">
+      <span class="hero-stat-num">12+</span>
+      <span class="hero-stat-label">Years Mastery</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">340</span>
+      <span class="hero-stat-label">Projects Completed</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">100%</span>
+      <span class="hero-stat-label">Bespoke &amp; Handcrafted</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-image-col reveal">
+    <div class="about-years">
+      <span>12</span>
+      <small>Years of<br>Craft</small>
+    </div>
+    <div class="about-img-main">
+      <div class="image-placeholder-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+      <span class="image-placeholder-label">Portrait Photo</span>
+    </div>
+    <div class="about-img-accent">
+      <div class="image-placeholder-icon" style="width:36px;height:36px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg>
+      </div>
+      <span class="image-placeholder-label" style="font-size:9px">Workshop</span>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="reveal">
+      <p class="section-label">The Craftsman</p>
+      <h2 class="section-heading">Passion<br>Carved into <em>Every Grain</em></h2>
+      <p class="about-lead">"I don't build furniture. I build heirlooms — pieces that carry the memory of the hands that made them long after those hands are gone."</p>
+    </div>
+    <div class="about-body reveal reveal-delay-1">
+      <p>Growing up surrounded by timber yards and the smell of freshly cut wood, carpentry was never a career choice — it was an inheritance. With over twelve years of dedicated practice across Gold Coast and beyond, I've developed a philosophy that places material, honesty, and longevity above trend or convenience.</p>
+      <p>Every commission begins with a conversation: about your space, your life, the way you want to feel when you walk into a room. From that conversation, and from the unique character of the timber selected, something singular is created — built by hand, from sustainably sourced materials, with joinery techniques that will outlast the century.</p>
+      <p>Ultimate Builds is not a production line. It is a studio, a workshop, and a promise: that what you receive will be the finest version of what you imagined.</p>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="about-divider"></div>
+      <p class="about-signature">Jordan Clarke</p>
+      <p class="about-title">Master Carpenter & Founder</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="reveal">
+      <p class="section-label">What We Create</p>
+      <h2 class="section-heading">Craft Without<br><em>Compromise</em></h2>
+    </div>
+    <p class="services-intro reveal reveal-delay-1">From bespoke kitchen cabinetry to handcrafted dining tables that become the centrepiece of a family's life — every discipline is approached with the same rigour and reverence for material.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <p class="service-num">01</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="1"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3 class="service-name">Custom Furniture</h3>
+      <p class="service-desc">Original pieces designed around your space and lifestyle. Dining tables, beds, wardrobes, and statement pieces in solid hardwood with traditional joinery.</p>
+      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <p class="service-num">02</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="service-name">Interior Millwork</h3>
+      <p class="service-desc">Built-in cabinetry, bookshelves, media walls, and architectural timber features that transform a house into a deeply personal home.</p>
+      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <p class="service-num">03</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3 class="service-name">Kitchen Design</h3>
+      <p class="service-desc">Full kitchen joinery from concept to installation. Designed with precision, built with craft — kitchens that are as functional as they are beautiful.</p>
+      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <p class="service-num">04</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3 class="service-name">Restoration</h3>
+      <p class="service-desc">Breathing new life into antique and heritage pieces using period-appropriate techniques. Because some things deserve to last another century.</p>
+      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <p class="service-num">05</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h3 class="service-name">Architectural Timber</h3>
+      <p class="service-desc">Staircases, cladding, ceiling features, and structural decorative elements. Where carpentry meets architecture in the most permanent sense.</p>
+      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <p class="service-num">06</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <h3 class="service-name">Commercial &amp; Hospitality</h3>
+      <p class="service-desc">Boutique hotels, restaurants, and commercial fit-outs that demand craftsmanship at scale without sacrificing the quality of a singular piece.</p>
+      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header">
+    <div class="reveal">
+      <p class="section-label">Recent Work</p>
+      <h2 class="section-heading">A Portfolio of <em>Permanence</em></h2>
+    </div>
+    <a href="#" class="portfolio-all reveal">View All Projects <span style="color:var(--gold)">→</span></a>
+  </div>
+  <div class="portfolio-filters reveal">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">Furniture</button>
+    <button class="filter-btn">Kitchens</button>
+    <button class="filter-btn">Built-Ins</button>
+    <button class="filter-btn">Commercial</button>
+    <button class="filter-btn">Restoration</button>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <div class="portfolio-img">
+        <div class="image-placeholder-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <span class="image-placeholder-label">Featured Project</span>
+      </div>
+      <div class="portfolio-overlay">
+        <p class="portfolio-cat">Custom Furniture</p>
+        <p class="portfolio-title">Live-Edge Blackwood Dining Suite</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-img">
+        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
+        <span class="image-placeholder-label">Project Image</span>
+      </div>
+      <div class="portfolio-overlay">
+        <p class="portfolio-cat">Kitchen Joinery</p>
+        <p class="portfolio-title">Hamptons Kitchen Refit</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-img">
+        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
+        <span class="image-placeholder-label">Project Image</span>
+      </div>
+      <div class="portfolio-overlay">
+        <p class="portfolio-cat">Built-In Cabinetry</p>
+        <p class="portfolio-title">Floor-to-Ceiling Study Library</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-img">
+        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
+        <span class="image-placeholder-label">Project Image</span>
+      </div>
+      <div class="portfolio-overlay">
+        <p class="portfolio-cat">Architectural Timber</p>
+        <p class="portfolio-title">Feature Staircase</p>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-img">
+        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
+        <span class="image-placeholder-label">Project Image</span>
+      </div>
+      <div class="portfolio-overlay">
+        <p class="portfolio-cat">Commercial</p>
+        <p class="portfolio-title">Boutique Hotel Fit-Out</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-header reveal">
+    <p class="section-label">How We Work</p>
+    <h2 class="section-heading">From First Word<br>to <em>Finished Piece</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-dot-wrap">
+        <div class="step-dot"><span class="step-num">01</span></div>
+      </div>
+      <h3 class="step-title">Discovery & Conversation</h3>
+      <p class="step-desc">Every project begins with listening. We explore your vision, your space, your lifestyle, and the story you want your piece to tell. No two conversations are the same.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <div class="step-dot-wrap">
+        <div class="step-dot"><span class="step-num">02</span></div>
+      </div>
+      <h3 class="step-title">Design & Material Selection</h3>
+      <p class="step-desc">Detailed drawings and timber selection together. You'll handle the actual planks being considered — seeing the grain, the figure, the character of the wood before a single cut is made.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="step-dot-wrap">
+        <div class="step-dot"><span class="step-num">03</span></div>
+      </div>
+      <h3 class="step-title">Handcraft & Build</h3>
+      <p class="step-desc">The work happens in the workshop, by hand, with traditional and modern joinery techniques combined. You receive progress updates and are welcome to visit during this stage.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="step-dot-wrap">
+        <div class="step-dot"><span class="step-num">04</span></div>
+      </div>
+      <h3 class="step-title">Delivery & Installation</h3>
+      <p class="step-desc">White-glove delivery and installation by the same hands that built the piece. We don't leave until everything is perfect — and we don't consider a project finished until you do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-header reveal">
+    <p class="section-label">Client Stories</p>
+    <h2 class="section-heading">Told in Their <em>Own Words</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial reveal">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">The dining table Jordan built for us has become the heart of our home. Every dinner party, every holiday, every ordinary Tuesday — it's there. I can't imagine the house without it.</p>
+      <div class="testimonial-divider"></div>
+      <p class="testimonial-author">Sarah & Michael T.</p>
+      <p class="testimonial-role">Residential Client · Broadbeach Waters</p>
+    </div>
+    <div class="testimonial reveal reveal-delay-1">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">We've worked with many craftspeople across our hotel projects. Jordan stands apart for his ability to understand the design brief and then exceed it with his own vision of what the material can do.</p>
+      <div class="testimonial-divider"></div>
+      <p class="testimonial-author">Claire R.</p>
+      <p class="testimonial-role">Interior Architect · Brisbane</p>
+    </div>
+    <div class="testimonial reveal reveal-delay-2">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">What impressed me most was not just the quality of the finished kitchen — extraordinary as it is — but the integrity of the entire process. Every detail was thought through, communicated, and delivered.</p>
+      <div class="testimonial-divider"></div>
+      <p class="testimonial-author">Dr. Andrew P.</p>
+      <p class="testimonial-role">Residential Client · Mermaid Waters</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="reveal">
+    <h2 class="cta-heading">Ready to Create<br>Something <em>Lasting?</em></h2>
+    <p class="cta-sub">Commissions are taken on a limited basis to ensure every project receives the full attention it deserves. Enquire early to secure your place.</p>
+  </div>
+  <div class="cta-actions reveal reveal-delay-1">
+    <a href="#contact" class="btn-primary" style="text-align:center">Begin a Conversation</a>
+    <a href="tel:+61400000000" class="btn-ghost" style="justify-content:flex-end"><span class="btn-ghost-line"></span> +61 4XX XXX XXX</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <div class="reveal">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-heading">Let's Begin<br><em>Your Project</em></h2>
+    </div>
+    <div class="contact-detail reveal reveal-delay-1">
+      <div class="contact-item">
+        <p class="contact-item-label">Studio Location</p>
+        <p class="contact-item-value">Gold Coast, Queensland<br>Australia</p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Email</p>
+        <p class="contact-item-value">hello@ultimatebuilds.com.au</p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Phone</p>
+        <p class="contact-item-value">+61 4XX XXX XXX</p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Service Area</p>
+        <p class="contact-item-value">Gold Coast · Brisbane<br>Hinterland &amp; Beyond</p>
+      </div>
+    </div>
+  </div>
+  <form class="contact-form reveal reveal-delay-1" onsubmit="return false;">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-input" placeholder="Jordan">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-input" placeholder="Clarke">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email Address</label>
+      <input type="email" class="form-input" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Project Type</label>
+      <select class="form-select">
+        <option value="" disabled selected>Select a service...</option>
+        <option>Custom Furniture</option>
+        <option>Kitchen Joinery</option>
+        <option>Built-In Cabinetry</option>
+        <option>Architectural Timber</option>
+        <option>Restoration</option>
+        <option>Commercial / Hospitality</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tell Me About Your Vision</label>
+      <textarea class="form-textarea" placeholder="Describe your project, space, timeline, or simply how you'd like the finished piece to make you feel..."></textarea>
+    </div>
+    <button type="submit" class="form-submit">
+      Send Enquiry
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <svg width="40" height="32" viewBox="0 0 200 170" fill="none">
+          <rect x="10" y="10" width="14" height="110" fill="#b8924a"/>
+          <rect x="10" y="108" width="70" height="12" fill="#b8924a"/>
+          <rect x="10" y="10" width="70" height="12" fill="#b8924a"/>
+          <polygon points="60,80 120,20 180,80" fill="#b8924a"/>
+          <polygon points="90,80 130,44 170,80" fill="#0e0d0b"/>
+          <circle cx="155" cy="68" r="8" fill="#b8924a"/>
+          <circle cx="155" cy="68" r="4" fill="#0e0d0b"/>
+        </svg>
+      </div>
+      <p class="footer-tagline">"Built to endure.<br>Designed to inspire.<br>Crafted by hand."</p>
+      <div class="footer-social">
+        <a href="#" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Houzz">
+          <svg viewBox="0 0 24 24"><path d="M12 2L3 7v14h18V7z"/><rect x="9" y="14" width="6" height="7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Services</p>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Custom Furniture</a>
+        <a href="#" class="footer-link">Kitchen Joinery</a>
+        <a href="#" class="footer-link">Built-In Cabinetry</a>
+        <a href="#" class="footer-link">Architectural Timber</a>
+        <a href="#" class="footer-link">Restoration</a>
+        <a href="#" class="footer-link">Commercial</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Studio</p>
+      <div class="footer-links">
+        <a href="#about" class="footer-link">About Jordan</a>
+        <a href="#process" class="footer-link">Our Process</a>
+        <a href="#portfolio" class="footer-link">Portfolio</a>
+        <a href="#" class="footer-link">Press & Features</a>
+        <a href="#contact" class="footer-link">Enquire</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <div class="footer-links">
+        <a href="mailto:hello@ultimatebuilds.com.au" class="footer-link">hello@ultimatebuilds.com.au</a>
+        <a href="tel:+61400000000" class="footer-link">+61 4XX XXX XXX</a>
+        <a href="#" class="footer-link">Gold Coast, QLD</a>
+        <a href="#" class="footer-link">ABN: XX XXX XXX XXX</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 <span>Ultimate Builds</span>. All rights reserved. Gold Coast, Queensland.</p>
+    <p class="footer-copy">Designed with intention. Built with craft.</p>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Portfolio filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
