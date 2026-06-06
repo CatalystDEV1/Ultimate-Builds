@@ -3,27 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Builds — Luxury Carpentry</title>
+<title>Ultimate Builds — Carpentry & Construction</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --black: #0e0d0b;
-    --off-black: #161512;
-    --charcoal: #1e1c18;
-    --dark-warm: #252219;
-    --mid: #5a5244;
-    --warm-grey: #8a7f72;
-    --cream: #f2ede6;
-    --off-white: #faf8f4;
+    --black: #080808;
+    --off-black: #111111;
+    --charcoal: #1a1a1a;
+    --dark-mid: #222222;
+    --mid: #444444;
+    --warm-grey: #7a7a7a;
+    --light-grey: #aaaaaa;
+    --silver: #cccccc;
+    --cream: #e8e8e8;
+    --off-white: #f4f4f4;
     --white: #ffffff;
-    --gold: #b8924a;
-    --gold-light: #d4aa6a;
-    --gold-dark: #8a6a30;
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'Jost', sans-serif;
+    --accent: #d0d0d0;
+    --accent-dim: #555555;
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: "Jost", sans-serif;
   }
 
   html { scroll-behavior: smooth; }
@@ -37,30 +38,24 @@
     cursor: none;
   }
 
-  /* Custom cursor */
   .cursor {
     width: 8px; height: 8px;
-    background: var(--gold);
+    background: var(--white);
     border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background 0.2s;
+    transition: width 0.2s, height 0.2s;
   }
   .cursor-ring {
     width: 36px; height: 36px;
-    border: 1px solid rgba(184,146,74,0.4);
+    border: 1px solid rgba(255,255,255,0.3);
     border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9998;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: transform 0.12s ease-out, width 0.2s, height 0.2s;
+    transition: transform 0.12s ease-out;
   }
-  body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 14px; height: 14px; }
 
   /* NAV */
   nav {
@@ -72,80 +67,58 @@
     transition: background 0.4s, height 0.4s;
   }
   nav.scrolled {
-    background: rgba(14,13,11,0.95);
+    background: rgba(8,8,8,0.96);
     backdrop-filter: blur(12px);
     height: 64px;
-    border-bottom: 1px solid rgba(184,146,74,0.12);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .nav-logo {
     display: flex; align-items: center; gap: 14px;
     text-decoration: none;
   }
-  .nav-logo img { height: 36px; width: auto; filter: brightness(10); }
-  .nav-logo-text {
-    font-family: var(--sans);
-    font-weight: 200;
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--cream);
-    line-height: 1.6;
+  .nav-logo img {
+    height: 42px; width: auto;
+    filter: brightness(0) invert(1);
   }
-  .nav-logo-text strong { display: block; font-weight: 400; font-size: 13px; letter-spacing: 0.25em; }
   .nav-links { display: flex; align-items: center; gap: 48px; }
   .nav-links a {
     font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--warm-grey);
-    text-decoration: none;
-    transition: color 0.3s;
-    position: relative;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--warm-grey); text-decoration: none;
+    transition: color 0.3s; position: relative;
   }
   .nav-links a::after {
-    content: '';
-    position: absolute; bottom: -3px; left: 0; right: 0; height: 1px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
+    content: ""; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px;
+    background: var(--white);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
   }
-  .nav-links a:hover { color: var(--cream); }
+  .nav-links a:hover { color: var(--white); }
   .nav-links a:hover::after { transform: scaleX(1); }
   .nav-cta {
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-decoration: none;
-    border: 1px solid rgba(184,146,74,0.4);
+    font-family: var(--sans); font-size: 10px; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.3);
     padding: 10px 22px;
-    transition: background 0.3s, color 0.3s, border-color 0.3s;
+    transition: background 0.3s, border-color 0.3s;
   }
-  .nav-cta:hover { background: var(--gold); color: var(--off-black) !important; border-color: var(--gold); }
+  .nav-cta:hover { background: var(--white); color: var(--off-black) !important; border-color: var(--white); }
 
   /* HERO */
   .hero {
     height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
   }
   .hero-left {
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 0 60px 80px 60px;
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
   }
   .hero-right {
     background: var(--charcoal);
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
     display: flex; align-items: center; justify-content: center;
   }
   .hero-image-placeholder {
@@ -155,88 +128,57 @@
     flex-direction: column; gap: 16px;
   }
   .image-placeholder-label {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--mid);
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid);
   }
   .image-placeholder-icon {
     width: 48px; height: 48px;
     border: 1px solid var(--mid);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0.4;
+    display: flex; align-items: center; justify-content: center; opacity: 0.4;
   }
   .hero-eyebrow {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 28px;
-    opacity: 0;
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: 0.4em; text-transform: uppercase; color: var(--silver);
+    margin-bottom: 28px; opacity: 0;
     animation: fadeUp 1s 0.3s forwards;
   }
   .hero-eyebrow::before {
-    content: '';
-    display: inline-block; width: 32px; height: 1px;
-    background: var(--gold); vertical-align: middle;
-    margin-right: 14px;
+    content: ""; display: inline-block; width: 32px; height: 1px;
+    background: var(--silver); vertical-align: middle; margin-right: 14px;
   }
   .hero-heading {
     font-family: var(--serif);
-    font-size: clamp(52px, 6vw, 88px);
-    font-weight: 300;
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    color: var(--off-white);
-    margin-bottom: 36px;
-    opacity: 0;
+    font-size: clamp(52px, 6vw, 88px); font-weight: 300;
+    line-height: 1.04; letter-spacing: -0.02em; color: var(--off-white);
+    margin-bottom: 36px; opacity: 0;
     animation: fadeUp 1s 0.5s forwards;
   }
-  .hero-heading em { font-style: italic; color: var(--gold-light); }
+  .hero-heading em { font-style: italic; color: var(--silver); }
   .hero-sub {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--warm-grey);
-    max-width: 420px;
-    margin-bottom: 52px;
-    opacity: 0;
+    font-family: var(--sans); font-size: 13px; font-weight: 300;
+    line-height: 1.8; color: var(--warm-grey);
+    max-width: 420px; margin-bottom: 52px; opacity: 0;
     animation: fadeUp 1s 0.7s forwards;
   }
   .hero-actions {
     display: flex; align-items: center; gap: 36px;
-    opacity: 0;
-    animation: fadeUp 1s 0.9s forwards;
+    opacity: 0; animation: fadeUp 1s 0.9s forwards;
   }
   .btn-primary {
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--off-black);
-    background: var(--gold);
-    text-decoration: none;
-    padding: 16px 36px;
-    transition: background 0.3s, transform 0.3s;
-    display: inline-block;
+    font-family: var(--sans); font-size: 10px; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--off-black); background: var(--white);
+    text-decoration: none; padding: 16px 36px;
+    transition: background 0.3s, transform 0.3s; display: inline-block;
   }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-primary:hover { background: var(--cream); transform: translateY(-2px); }
   .btn-ghost {
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--warm-grey);
-    text-decoration: none;
-    display: flex; align-items: center; gap: 10px;
-    transition: color 0.3s;
+    font-family: var(--sans); font-size: 10px; font-weight: 300;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--warm-grey); text-decoration: none;
+    display: flex; align-items: center; gap: 10px; transition: color 0.3s;
   }
-  .btn-ghost:hover { color: var(--cream); }
+  .btn-ghost:hover { color: var(--white); }
   .btn-ghost-line {
     display: inline-block; width: 28px; height: 1px;
     background: currentColor; transition: width 0.3s;
@@ -244,300 +186,191 @@
   .btn-ghost:hover .btn-ghost-line { width: 40px; }
   .hero-stat-bar {
     position: absolute; bottom: 0; right: 0; left: 50%;
-    border-top: 1px solid rgba(184,146,74,0.15);
-    display: flex;
-    opacity: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; opacity: 0;
     animation: fadeIn 1s 1.2s forwards;
   }
   .hero-stat {
-    flex: 1;
-    padding: 24px 32px;
-    border-right: 1px solid rgba(184,146,74,0.1);
+    flex: 1; padding: 24px 32px;
+    border-right: 1px solid rgba(255,255,255,0.06);
   }
   .hero-stat:last-child { border-right: none; }
   .hero-stat-num {
-    font-family: var(--serif);
-    font-size: 32px;
-    font-weight: 300;
-    color: var(--off-white);
-    display: block;
-    line-height: 1;
-    margin-bottom: 6px;
+    font-family: var(--serif); font-size: 32px; font-weight: 300;
+    color: var(--off-white); display: block; line-height: 1; margin-bottom: 6px;
   }
   .hero-stat-label {
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--mid);
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid);
   }
   .hero-scroll {
-    position: absolute;
-    left: 60px; bottom: 40px;
+    position: absolute; left: 60px; bottom: 40px;
     display: flex; align-items: center; gap: 14px;
     font-family: var(--sans); font-size: 9px;
-    letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--mid);
-    writing-mode: vertical-rl;
-    opacity: 0;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid);
+    writing-mode: vertical-rl; opacity: 0;
     animation: fadeIn 1.2s 1.4s forwards;
   }
   .scroll-line {
     width: 1px; height: 48px;
-    background: linear-gradient(to bottom, transparent, var(--gold));
+    background: linear-gradient(to bottom, transparent, var(--warm-grey));
     animation: scrollPulse 2s 2s infinite;
   }
 
   /* SECTION COMMONS */
-  section { position: relative; }
   .section-label {
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
-    display: flex; align-items: center; gap: 14px;
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.4em; text-transform: uppercase; color: var(--silver);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 14px;
   }
   .section-label::before {
-    content: '';
-    display: inline-block; width: 24px; height: 1px; background: var(--gold);
+    content: ""; display: inline-block; width: 24px; height: 1px; background: var(--silver);
   }
   .section-heading {
     font-family: var(--serif);
-    font-size: clamp(36px, 4vw, 60px);
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--off-white);
-    letter-spacing: -0.01em;
+    font-size: clamp(36px, 4vw, 60px); font-weight: 300;
+    line-height: 1.1; color: var(--off-white); letter-spacing: -0.01em;
   }
-  .section-heading em { font-style: italic; color: var(--gold-light); }
+  .section-heading em { font-style: italic; color: var(--silver); }
 
   /* ABOUT */
   .about {
     padding: 140px 60px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: center;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 100px; align-items: center;
     background: var(--off-black);
   }
   .about-image-col { position: relative; }
   .about-img-main {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background: var(--charcoal);
-    position: relative;
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--charcoal); position: relative;
     display: flex; align-items: center; justify-content: center;
     flex-direction: column; gap: 12px;
   }
   .about-img-accent {
-    position: absolute;
-    width: 55%;
-    aspect-ratio: 1/1;
-    background: var(--dark-warm);
-    bottom: -40px; right: -40px;
-    border: 1px solid rgba(184,146,74,0.2);
+    position: absolute; width: 55%; aspect-ratio: 1/1;
+    background: var(--dark-mid); bottom: -40px; right: -40px;
+    border: 1px solid rgba(255,255,255,0.08);
     display: flex; align-items: center; justify-content: center;
     flex-direction: column; gap: 10px;
   }
   .about-years {
-    position: absolute;
-    top: 40px; left: -30px;
-    background: var(--gold);
-    padding: 24px;
-    text-align: center;
+    position: absolute; top: 40px; left: -30px;
+    background: var(--white); padding: 24px; text-align: center;
   }
   .about-years span {
-    display: block;
-    font-family: var(--serif);
-    font-size: 48px;
-    font-weight: 300;
-    color: var(--off-black);
-    line-height: 1;
+    display: block; font-family: var(--serif);
+    font-size: 48px; font-weight: 300; color: var(--off-black); line-height: 1;
   }
   .about-years small {
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--off-black);
-    opacity: 0.7;
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid);
   }
-  .about-content {}
   .about-lead {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 300;
-    line-height: 1.6;
-    color: var(--off-white);
-    margin: 32px 0 28px;
-    font-style: italic;
+    font-family: var(--serif); font-size: 22px; font-weight: 300;
+    line-height: 1.6; color: var(--off-white);
+    margin: 32px 0 28px; font-style: italic;
   }
   .about-body {
-    font-family: var(--sans);
-    font-size: 13.5px;
-    font-weight: 300;
-    line-height: 1.9;
-    color: var(--warm-grey);
-    margin-bottom: 48px;
+    font-family: var(--sans); font-size: 13.5px; font-weight: 300;
+    line-height: 1.9; color: var(--warm-grey); margin-bottom: 48px;
   }
   .about-body p { margin-bottom: 18px; }
   .about-signature {
-    font-family: var(--serif);
-    font-size: 28px;
-    font-style: italic;
-    color: var(--gold-light);
-    margin-bottom: 6px;
+    font-family: var(--serif); font-size: 28px;
+    font-style: italic; color: var(--silver); margin-bottom: 6px;
   }
   .about-title {
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--mid);
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid);
   }
-  .about-divider {
-    width: 1px; height: 40px;
-    background: rgba(184,146,74,0.3);
-    margin: 20px 0;
-  }
+  .about-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.15); margin: 20px 0; }
 
   /* SERVICES */
-  .services {
-    padding: 140px 60px;
-    background: var(--charcoal);
-  }
+  .services { padding: 140px 60px; background: var(--charcoal); }
   .services-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: end;
-    margin-bottom: 80px;
-    padding-bottom: 60px;
-    border-bottom: 1px solid rgba(184,146,74,0.1);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: end; margin-bottom: 80px;
+    padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.07);
   }
   .services-intro {
-    font-family: var(--sans);
-    font-size: 13px;
-    line-height: 1.9;
-    color: var(--warm-grey);
-    font-weight: 300;
+    font-family: var(--sans); font-size: 13px;
+    line-height: 1.9; color: var(--warm-grey); font-weight: 300;
   }
   .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(184,146,74,0.1);
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.07);
   }
   .service-card {
-    background: var(--charcoal);
-    padding: 52px 44px;
-    position: relative;
-    transition: background 0.4s;
-    overflow: hidden;
+    background: var(--charcoal); padding: 52px 44px;
+    position: relative; transition: background 0.4s; overflow: hidden;
   }
   .service-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--gold);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s;
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--white); transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
   }
-  .service-card:hover { background: var(--dark-warm); }
+  .service-card:hover { background: var(--dark-mid); }
   .service-card:hover::before { transform: scaleX(1); }
   .service-num {
-    font-family: var(--serif);
-    font-size: 13px;
-    color: var(--gold);
-    margin-bottom: 28px;
-    opacity: 0.6;
+    font-family: var(--serif); font-size: 13px; color: var(--accent-dim); margin-bottom: 28px;
   }
   .service-icon {
     width: 40px; height: 40px;
-    border: 1px solid rgba(184,146,74,0.3);
+    border: 1px solid rgba(255,255,255,0.15);
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 28px;
-    transition: border-color 0.3s;
+    margin-bottom: 28px; transition: border-color 0.3s;
   }
-  .service-card:hover .service-icon { border-color: var(--gold); }
-  .service-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .service-card:hover .service-icon { border-color: var(--white); }
+  .service-icon svg { width: 18px; height: 18px; stroke: var(--silver); fill: none; stroke-width: 1.5; }
   .service-name {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 300;
-    color: var(--off-white);
-    margin-bottom: 16px;
-    line-height: 1.3;
+    font-family: var(--serif); font-size: 22px; font-weight: 300;
+    color: var(--off-white); margin-bottom: 16px; line-height: 1.3;
   }
   .service-desc {
-    font-family: var(--sans);
-    font-size: 12.5px;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--warm-grey);
-    margin-bottom: 32px;
+    font-family: var(--sans); font-size: 12.5px; font-weight: 300;
+    line-height: 1.8; color: var(--warm-grey); margin-bottom: 32px;
   }
   .service-link {
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    text-decoration: none;
-    display: flex; align-items: center; gap: 10px;
-    transition: gap 0.3s;
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--silver); text-decoration: none;
+    display: flex; align-items: center; gap: 10px; transition: gap 0.3s;
   }
   .service-card:hover .service-link { gap: 16px; }
 
   /* PORTFOLIO */
-  .portfolio {
-    padding: 140px 0;
-    background: var(--off-black);
-  }
+  .portfolio { padding: 140px 0; background: var(--off-black); }
   .portfolio-header {
     padding: 0 60px;
     display: flex; justify-content: space-between; align-items: flex-end;
     margin-bottom: 64px;
   }
   .portfolio-all {
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--warm-grey);
-    text-decoration: none;
-    display: flex; align-items: center; gap: 12px;
-    transition: color 0.3s;
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--warm-grey); text-decoration: none;
+    display: flex; align-items: center; gap: 12px; transition: color 0.3s;
   }
-  .portfolio-all:hover { color: var(--gold); }
+  .portfolio-all:hover { color: var(--white); }
   .portfolio-filters {
     display: flex; gap: 28px;
-    padding: 0 60px;
-    margin-bottom: 48px;
+    padding: 0 60px; margin-bottom: 48px;
   }
   .filter-btn {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mid);
-    background: none; border: none; cursor: none;
+    font-family: var(--sans); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mid); background: none; border: none; cursor: none;
     padding: 0; padding-bottom: 8px;
-    border-bottom: 1px solid transparent;
-    transition: color 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent; transition: color 0.3s, border-color 0.3s;
   }
-  .filter-btn.active, .filter-btn:hover { color: var(--gold); border-color: var(--gold); }
+  .filter-btn.active, .filter-btn:hover { color: var(--white); border-color: var(--white); }
   .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 16px;
-    padding: 0 60px;
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    gap: 16px; padding: 0 60px;
   }
   .portfolio-item {
     position: relative; overflow: hidden;
-    background: var(--charcoal);
-    cursor: none;
+    background: var(--charcoal); cursor: none;
   }
   .portfolio-item:nth-child(1) { grid-column: span 7; grid-row: span 2; }
   .portfolio-item:nth-child(2) { grid-column: span 5; }
@@ -545,8 +378,7 @@
   .portfolio-item:nth-child(4) { grid-column: span 4; }
   .portfolio-item:nth-child(5) { grid-column: span 4; }
   .portfolio-img {
-    width: 100%;
-    background: var(--charcoal);
+    width: 100%; background: var(--charcoal);
     display: flex; align-items: center; justify-content: center;
     flex-direction: column; gap: 10px;
     transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
@@ -559,329 +391,188 @@
   .portfolio-item:hover .portfolio-img { transform: scale(1.04); }
   .portfolio-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(14,13,11,0.92) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.4s;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 28px;
+    background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.4s;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 28px;
   }
   .portfolio-item:hover .portfolio-overlay { opacity: 1; }
   .portfolio-cat {
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--silver); margin-bottom: 8px;
   }
   .portfolio-title {
-    font-family: var(--serif);
-    font-size: 20px;
-    font-weight: 300;
-    color: var(--off-white);
+    font-family: var(--serif); font-size: 20px; font-weight: 300; color: var(--off-white);
   }
 
   /* PROCESS */
-  .process {
-    padding: 140px 60px;
-    background: var(--dark-warm);
-  }
+  .process { padding: 140px 60px; background: var(--dark-mid); }
   .process-header { margin-bottom: 80px; }
   .process-steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    position: relative;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; position: relative;
   }
   .process-steps::before {
-    content: '';
-    position: absolute;
-    top: 26px; left: 13%;
-    width: 75%; height: 1px;
-    background: linear-gradient(to right, rgba(184,146,74,0.3), rgba(184,146,74,0.3));
+    content: ""; position: absolute;
+    top: 26px; left: 13%; width: 75%; height: 1px;
+    background: rgba(255,255,255,0.1);
   }
   .process-step { padding: 0 32px 0 0; }
   .step-dot-wrap { display: flex; align-items: center; margin-bottom: 40px; }
   .step-dot {
     width: 52px; height: 52px;
-    border: 1px solid rgba(184,146,74,0.4);
-    background: var(--dark-warm);
-    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: var(--dark-mid); border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; position: relative; z-index: 1;
     transition: background 0.3s, border-color 0.3s;
   }
-  .process-step:hover .step-dot { background: var(--gold); border-color: var(--gold); }
+  .process-step:hover .step-dot { background: var(--white); border-color: var(--white); }
   .step-num {
-    font-family: var(--serif);
-    font-size: 16px;
-    color: var(--gold);
-    transition: color 0.3s;
+    font-family: var(--serif); font-size: 16px; color: var(--silver); transition: color 0.3s;
   }
   .process-step:hover .step-num { color: var(--off-black); }
   .step-title {
-    font-family: var(--serif);
-    font-size: 20px;
-    font-weight: 300;
-    color: var(--off-white);
-    margin-bottom: 16px;
-    line-height: 1.3;
+    font-family: var(--serif); font-size: 20px; font-weight: 300;
+    color: var(--off-white); margin-bottom: 16px; line-height: 1.3;
   }
   .step-desc {
-    font-family: var(--sans);
-    font-size: 12.5px;
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--warm-grey);
+    font-family: var(--sans); font-size: 12.5px; font-weight: 300;
+    line-height: 1.8; color: var(--warm-grey);
   }
 
   /* TESTIMONIALS */
-  .testimonials {
-    padding: 140px 60px;
-    background: var(--off-black);
-  }
+  .testimonials { padding: 140px 60px; background: var(--off-black); }
   .testimonials-header { margin-bottom: 80px; }
   .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(184,146,74,0.1);
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.07);
   }
-  .testimonial {
-    background: var(--off-black);
-    padding: 52px 44px;
-    position: relative;
-  }
+  .testimonial { background: var(--off-black); padding: 52px 44px; position: relative; }
   .testimonial-quote {
-    font-family: var(--serif);
-    font-size: 56px;
-    color: var(--gold);
-    line-height: 0.8;
-    margin-bottom: 24px;
-    opacity: 0.35;
+    font-family: var(--serif); font-size: 56px; color: var(--silver);
+    line-height: 0.8; margin-bottom: 24px; opacity: 0.2;
   }
   .testimonial-text {
-    font-family: var(--serif);
-    font-size: 17px;
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.7;
-    color: var(--off-white);
-    margin-bottom: 36px;
+    font-family: var(--serif); font-size: 17px; font-weight: 300;
+    font-style: italic; line-height: 1.7; color: var(--off-white); margin-bottom: 36px;
   }
-  .testimonial-divider {
-    width: 32px; height: 1px;
-    background: var(--gold);
-    margin-bottom: 24px;
-    opacity: 0.5;
-  }
+  .testimonial-divider { width: 32px; height: 1px; background: var(--silver); margin-bottom: 24px; opacity: 0.4; }
   .testimonial-author {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    color: var(--cream);
-    text-transform: uppercase;
-    margin-bottom: 4px;
+    font-family: var(--sans); font-size: 11px; font-weight: 400;
+    letter-spacing: 0.15em; color: var(--cream); text-transform: uppercase; margin-bottom: 4px;
   }
   .testimonial-role {
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 300;
-    color: var(--mid);
-    letter-spacing: 0.1em;
+    font-family: var(--sans); font-size: 10px; font-weight: 300;
+    color: var(--mid); letter-spacing: 0.1em;
   }
 
-  /* CTA BAND */
+  /* CTA */
   .cta-band {
-    padding: 120px 60px;
-    background: var(--charcoal);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 60px;
-    border-top: 1px solid rgba(184,146,74,0.1);
-    border-bottom: 1px solid rgba(184,146,74,0.1);
+    padding: 120px 60px; background: var(--charcoal);
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; gap: 60px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
   }
   .cta-heading {
-    font-family: var(--serif);
-    font-size: clamp(36px, 4vw, 64px);
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--off-white);
+    font-family: var(--serif); font-size: clamp(36px, 4vw, 64px);
+    font-weight: 300; line-height: 1.1; color: var(--off-white);
   }
-  .cta-heading em { font-style: italic; color: var(--gold-light); }
+  .cta-heading em { font-style: italic; color: var(--silver); }
   .cta-sub {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--warm-grey);
-    margin-top: 20px;
-    line-height: 1.7;
+    font-family: var(--sans); font-size: 13px; font-weight: 300;
+    color: var(--warm-grey); margin-top: 20px; line-height: 1.7;
   }
   .cta-actions { display: flex; flex-direction: column; gap: 16px; align-items: flex-end; }
 
-  /* CONTACT FORM */
+  /* CONTACT */
   .contact {
-    padding: 140px 60px;
-    background: var(--off-black);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: start;
+    padding: 140px 60px; background: var(--off-black);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 100px; align-items: start;
   }
-  .contact-info {}
-  .contact-detail {
-    margin-top: 48px;
-    display: flex; flex-direction: column; gap: 28px;
-  }
-  .contact-item {}
+  .contact-detail { margin-top: 48px; display: flex; flex-direction: column; gap: 28px; }
   .contact-item-label {
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--silver); margin-bottom: 8px;
   }
   .contact-item-value {
-    font-family: var(--serif);
-    font-size: 16px;
-    font-weight: 300;
-    color: var(--off-white);
+    font-family: var(--serif); font-size: 16px; font-weight: 300; color: var(--off-white);
   }
   .contact-form { display: flex; flex-direction: column; gap: 0; }
   .form-group { margin-bottom: 28px; }
   .form-label {
-    display: block;
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 12px;
+    display: block; font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 12px;
   }
   .form-input, .form-select, .form-textarea {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(184,146,74,0.2);
+    width: 100%; background: transparent; border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
     padding: 12px 0;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--cream);
-    outline: none;
-    transition: border-color 0.3s;
-    appearance: none;
+    font-family: var(--sans); font-size: 13px; font-weight: 300;
+    color: var(--cream); outline: none; transition: border-color 0.3s; appearance: none;
   }
   .form-input::placeholder, .form-textarea::placeholder { color: var(--mid); }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--white); }
   .form-select { cursor: none; }
   .form-select option { background: var(--off-black); }
   .form-textarea { resize: none; height: 100px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
   .form-submit {
-    font-family: var(--sans);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--off-black);
-    background: var(--gold);
-    border: none;
-    padding: 18px 40px;
-    cursor: none;
-    transition: background 0.3s, transform 0.3s;
-    margin-top: 20px;
-    align-self: flex-start;
+    font-family: var(--sans); font-size: 10px; font-weight: 400;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--off-black); background: var(--white);
+    border: none; padding: 18px 40px; cursor: none;
+    transition: background 0.3s, transform 0.3s; margin-top: 20px; align-self: flex-start;
     display: flex; align-items: center; gap: 16px;
   }
-  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .form-submit:hover { background: var(--cream); transform: translateY(-2px); }
   .form-submit svg { width: 16px; height: 16px; stroke: var(--off-black); fill: none; stroke-width: 1.5; }
 
   /* FOOTER */
-  footer {
-    padding: 80px 60px 48px;
-    background: var(--black);
-    border-top: 1px solid rgba(184,146,74,0.08);
-  }
+  footer { padding: 80px 60px 48px; background: var(--black); border-top: 1px solid rgba(255,255,255,0.05); }
   .footer-top {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 60px;
-    padding-bottom: 64px;
-    margin-bottom: 48px;
-    border-bottom: 1px solid rgba(184,146,74,0.08);
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px; padding-bottom: 64px; margin-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
   }
-  .footer-brand {}
-  .footer-logo img { height: 32px; filter: brightness(10); margin-bottom: 20px; }
+  .footer-logo img { height: 32px; filter: brightness(0) invert(1); margin-bottom: 20px; }
   .footer-tagline {
-    font-family: var(--serif);
-    font-size: 16px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--warm-grey);
-    line-height: 1.6;
-    margin-bottom: 32px;
+    font-family: var(--serif); font-size: 16px; font-weight: 300;
+    font-style: italic; color: var(--warm-grey); line-height: 1.6; margin-bottom: 32px;
   }
   .footer-social { display: flex; gap: 16px; }
   .social-link {
     width: 36px; height: 36px;
-    border: 1px solid rgba(184,146,74,0.2);
+    border: 1px solid rgba(255,255,255,0.12);
     display: flex; align-items: center; justify-content: center;
-    text-decoration: none;
-    transition: border-color 0.3s, background 0.3s;
+    text-decoration: none; transition: border-color 0.3s, background 0.3s;
   }
-  .social-link:hover { border-color: var(--gold); background: rgba(184,146,74,0.1); }
+  .social-link:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
   .social-link svg { width: 14px; height: 14px; stroke: var(--warm-grey); fill: none; stroke-width: 1.5; }
   .footer-col-title {
-    font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 28px;
+    font-family: var(--sans); font-size: 9px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--silver); margin-bottom: 28px;
   }
   .footer-links { display: flex; flex-direction: column; gap: 14px; }
   .footer-link {
-    font-family: var(--sans);
-    font-size: 12px;
-    font-weight: 300;
-    color: var(--warm-grey);
-    text-decoration: none;
-    transition: color 0.3s;
+    font-family: var(--sans); font-size: 12px; font-weight: 300;
+    color: var(--warm-grey); text-decoration: none; transition: color 0.3s;
   }
-  .footer-link:hover { color: var(--cream); }
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-copy {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 300;
-    color: var(--mid);
-  }
-  .footer-copy span { color: var(--gold); }
+  .footer-link:hover { color: var(--white); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: var(--sans); font-size: 11px; font-weight: 300; color: var(--mid); }
+  .footer-copy span { color: var(--silver); }
 
   /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-  }
-
-  /* Reveal on scroll */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
   .reveal {
-    opacity: 0;
-    transform: translateY(32px);
+    opacity: 0; transform: translateY(32px);
     transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -889,13 +580,6 @@
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
-
-  /* Horizontal gold rule */
-  .gold-rule {
-    border: none;
-    border-top: 1px solid rgba(184,146,74,0.2);
-    margin: 0;
-  }
 </style>
 </head>
 <body>
@@ -906,64 +590,327 @@
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <svg width="44" height="36" viewBox="0 0 200 170" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="10" y="10" width="14" height="110" fill="#b8924a"/>
-      <rect x="10" y="108" width="70" height="12" fill="#b8924a"/>
-      <rect x="10" y="10" width="70" height="12" fill="#b8924a"/>
-      <polygon points="60,80 120,20 180,80" fill="#b8924a"/>
-      <polygon points="90,80 130,44 170,80" fill="#0e0d0b"/>
-      <circle cx="155" cy="68" r="8" fill="#b8924a"/>
-      <circle cx="155" cy="68" r="4" fill="#0e0d0b"/>
-    </svg>
-    <div class="nav-logo-text">
-      <strong>Ultimate Builds</strong>
-      Luxury Carpentry
-    </div>
+    <img src="data:image/png;base64,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" alt="Ultimate Builds">
   </a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#process">Process</a>
-    <a href="#contact" class="nav-cta">Begin a Project</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">Gold Coast · Est. 2015</p>
-    <h1 class="hero-heading">Where Timber<br>Becomes <em>Art</em></h1>
-    <p class="hero-sub">Bespoke carpentry and custom furniture crafted with uncompromising precision. Every piece is a conversation between the maker and the material — designed to endure for generations.</p>
+    <p class="hero-eyebrow">Central Coast, NSW · Est. 2025</p>
+    <h1 class="hero-heading">Built Right.<br><em>Built to Last.</em></h1>
+    <p class="hero-sub">Quality carpentry and construction delivered with precision and pride across the Central Coast. From structural framing to bespoke outdoor living — every job is treated as a masterpiece.</p>
     <div class="hero-actions">
-      <a href="#portfolio" class="btn-primary">View Portfolio</a>
-      <a href="#about" class="btn-ghost"><span class="btn-ghost-line"></span> Our Story</a>
+      <a href="#portfolio" class="btn-primary">View Work</a>
+      <a href="#about" class="btn-ghost"><span class="btn-ghost-line"></span> About Lochie</a>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-image-placeholder">
       <div class="image-placeholder-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#444"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
       </div>
       <span class="image-placeholder-label">Hero Image</span>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    Scroll
-  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
   <div class="hero-stat-bar">
     <div class="hero-stat">
-      <span class="hero-stat-num">12+</span>
-      <span class="hero-stat-label">Years Mastery</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-num">340</span>
-      <span class="hero-stat-label">Projects Completed</span>
+      <span class="hero-stat-num">10+</span>
+      <span class="hero-stat-label">Jobs Completed</span>
     </div>
     <div class="hero-stat">
       <span class="hero-stat-num">100%</span>
-      <span class="hero-stat-label">Bespoke &amp; Handcrafted</span>
+      <span class="hero-stat-label">Quality Guaranteed</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">Local</span>
+      <span class="hero-stat-label">Central Coast Trades</span>
     </div>
   </div>
 </section>
@@ -972,37 +919,37 @@
 <section class="about" id="about">
   <div class="about-image-col reveal">
     <div class="about-years">
-      <span>12</span>
-      <small>Years of<br>Craft</small>
+      <span>'25</span>
+      <small>Qualified<br>Carpenter</small>
     </div>
     <div class="about-img-main">
       <div class="image-placeholder-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#444"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
       </div>
       <span class="image-placeholder-label">Portrait Photo</span>
     </div>
     <div class="about-img-accent">
       <div class="image-placeholder-icon" style="width:36px;height:36px;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#444"><rect x="3" y="3" width="18" height="18" rx="1"/></svg>
       </div>
-      <span class="image-placeholder-label" style="font-size:9px">Workshop</span>
+      <span class="image-placeholder-label" style="font-size:9px">On Site</span>
     </div>
   </div>
   <div class="about-content">
     <div class="reveal">
       <p class="section-label">The Craftsman</p>
-      <h2 class="section-heading">Passion<br>Carved into <em>Every Grain</em></h2>
-      <p class="about-lead">"I don't build furniture. I build heirlooms — pieces that carry the memory of the hands that made them long after those hands are gone."</p>
+      <h2 class="section-heading">Dedication<br>Carved into <em>Every Job</em></h2>
+      <p class="about-lead">"I don't cut corners — I build them. Every single job I take on gets the same care and attention, whether it's a deck, a frame, or a full renovation."</p>
     </div>
     <div class="about-body reveal reveal-delay-1">
-      <p>Growing up surrounded by timber yards and the smell of freshly cut wood, carpentry was never a career choice — it was an inheritance. With over twelve years of dedicated practice across Gold Coast and beyond, I've developed a philosophy that places material, honesty, and longevity above trend or convenience.</p>
-      <p>Every commission begins with a conversation: about your space, your life, the way you want to feel when you walk into a room. From that conversation, and from the unique character of the timber selected, something singular is created — built by hand, from sustainably sourced materials, with joinery techniques that will outlast the century.</p>
-      <p>Ultimate Builds is not a production line. It is a studio, a workshop, and a promise: that what you receive will be the finest version of what you imagined.</p>
+      <p>Growing up on the Central Coast, Lochie McClelland developed a love for working with his hands from an early age. After completing his carpentry apprenticeship in 2025, he launched Ultimate Builds as a sole trader with a simple philosophy: deliver work so good that clients never need to call anyone else.</p>
+      <p>In the short time since going out on his own, Lochie has already built a reputation for reliability, clean workmanship, and genuine care for every project he touches. From structural framing and precision flooring installations to outdoor decking and bathroom renovations, he brings a level of finish that punches well above his years.</p>
+      <p>Operating across Terrigal, Avoca Beach, Kincumber, Erina, Wamberal, and the wider Central Coast, Lochie keeps his client list intentionally manageable — so that every project receives the focused attention it deserves.</p>
     </div>
     <div class="reveal reveal-delay-2">
       <div class="about-divider"></div>
-      <p class="about-signature">Jordan Clarke</p>
-      <p class="about-title">Master Carpenter & Founder</p>
+      <p class="about-signature">Lochie McClelland</p>
+      <p class="about-title">Qualified Carpenter & Sole Trader</p>
     </div>
   </div>
 </section>
@@ -1011,65 +958,65 @@
 <section class="services" id="services">
   <div class="services-header">
     <div class="reveal">
-      <p class="section-label">What We Create</p>
+      <p class="section-label">What We Build</p>
       <h2 class="section-heading">Craft Without<br><em>Compromise</em></h2>
     </div>
-    <p class="services-intro reveal reveal-delay-1">From bespoke kitchen cabinetry to handcrafted dining tables that become the centrepiece of a family's life — every discipline is approached with the same rigour and reverence for material.</p>
+    <p class="services-intro reveal reveal-delay-1">From robust structural framing that forms the bones of a home, to immaculate decking that frames a coastal lifestyle — every discipline is approached with the same rigour, precision, and respect for the materials.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal">
       <p class="service-num">01</p>
       <div class="service-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="1"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg>
       </div>
-      <h3 class="service-name">Custom Furniture</h3>
-      <p class="service-desc">Original pieces designed around your space and lifestyle. Dining tables, beds, wardrobes, and statement pieces in solid hardwood with traditional joinery.</p>
-      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+      <h3 class="service-name">Structural Framing</h3>
+      <p class="service-desc">The bones of every great build begin here. Precision timber framing for new constructions, extensions, and additions — executed to engineering standards with an eye for detail that sets the foundation for everything above it.</p>
+      <a href="#contact" class="service-link">Enquire <span>→</span></a>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <p class="service-num">02</p>
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       </div>
-      <h3 class="service-name">Interior Millwork</h3>
-      <p class="service-desc">Built-in cabinetry, bookshelves, media walls, and architectural timber features that transform a house into a deeply personal home.</p>
-      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+      <h3 class="service-name">Decking & Outdoor Living</h3>
+      <p class="service-desc">Considered deck design and construction that transforms an outdoor space into a seamless extension of the home. Hardwood, composite, and treated timber options — crafted to endure the Central Coast climate for decades to come.</p>
+      <a href="#contact" class="service-link">Enquire <span>→</span></a>
     </div>
     <div class="service-card reveal reveal-delay-2">
       <p class="service-num">03</p>
       <div class="service-icon">
         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       </div>
-      <h3 class="service-name">Kitchen Design</h3>
-      <p class="service-desc">Full kitchen joinery from concept to installation. Designed with precision, built with craft — kitchens that are as functional as they are beautiful.</p>
-      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+      <h3 class="service-name">Flooring</h3>
+      <p class="service-desc">Flawless floor installations in timber, engineered hardwood, and hybrid products. Whether it's a full home fit-out or a single room refresh, precise prep and laying technique ensures a result that looks and feels extraordinary underfoot.</p>
+      <a href="#contact" class="service-link">Enquire <span>→</span></a>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <p class="service-num">04</p>
       <div class="service-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="8 14 12 10 16 14"/></svg>
       </div>
-      <h3 class="service-name">Restoration</h3>
-      <p class="service-desc">Breathing new life into antique and heritage pieces using period-appropriate techniques. Because some things deserve to last another century.</p>
-      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+      <h3 class="service-name">Pergolas & Outdoor Structures</h3>
+      <p class="service-desc">Beautifully engineered pergolas, shade structures, and alfresco frameworks that redefine how a property connects with the outdoors. Council-compliant, structurally sound, and built to become a permanent feature of your home.</p>
+      <a href="#contact" class="service-link">Enquire <span>→</span></a>
     </div>
     <div class="service-card reveal reveal-delay-2">
       <p class="service-num">05</p>
       <div class="service-icon">
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v4H4z"/><path d="M4 12h16v8H4z"/><line x1="8" y1="4" x2="8" y2="20"/></svg>
       </div>
-      <h3 class="service-name">Architectural Timber</h3>
-      <p class="service-desc">Staircases, cladding, ceiling features, and structural decorative elements. Where carpentry meets architecture in the most permanent sense.</p>
-      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+      <h3 class="service-name">Bathroom Renovations</h3>
+      <p class="service-desc">Complete bathroom transformations from strip-out to final finish — incorporating waterproof lining, framing, cabinetry, and all timber elements. A bathroom renovation done right is one of the highest-return investments in any home.</p>
+      <a href="#contact" class="service-link">Enquire <span>→</span></a>
     </div>
     <div class="service-card reveal reveal-delay-3">
       <p class="service-num">06</p>
       <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="1"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
       </div>
-      <h3 class="service-name">Commercial &amp; Hospitality</h3>
-      <p class="service-desc">Boutique hotels, restaurants, and commercial fit-outs that demand craftsmanship at scale without sacrificing the quality of a singular piece.</p>
-      <a href="#portfolio" class="service-link">Explore <span>→</span></a>
+      <h3 class="service-name">Extensions & Renovations</h3>
+      <p class="service-desc">Full-scope home extensions, room additions, and general renovations that add real value and liveability. Every project is planned meticulously, built to code, and finished to a standard you'd be proud to show off for years to come.</p>
+      <a href="#contact" class="service-link">Enquire <span>→</span></a>
     </div>
   </div>
 </section>
@@ -1079,67 +1026,67 @@
   <div class="portfolio-header">
     <div class="reveal">
       <p class="section-label">Recent Work</p>
-      <h2 class="section-heading">A Portfolio of <em>Permanence</em></h2>
+      <h2 class="section-heading">Built With <em>Purpose</em></h2>
     </div>
-    <a href="#" class="portfolio-all reveal">View All Projects <span style="color:var(--gold)">→</span></a>
+    <a href="#contact" class="portfolio-all reveal">Discuss Your Project <span style="color:var(--silver)">→</span></a>
   </div>
   <div class="portfolio-filters reveal">
     <button class="filter-btn active">All</button>
-    <button class="filter-btn">Furniture</button>
-    <button class="filter-btn">Kitchens</button>
-    <button class="filter-btn">Built-Ins</button>
-    <button class="filter-btn">Commercial</button>
-    <button class="filter-btn">Restoration</button>
+    <button class="filter-btn">Framing</button>
+    <button class="filter-btn">Decking</button>
+    <button class="filter-btn">Flooring</button>
+    <button class="filter-btn">Renovations</button>
+    <button class="filter-btn">Pergolas</button>
   </div>
   <div class="portfolio-grid">
     <div class="portfolio-item">
       <div class="portfolio-img">
-        <div class="image-placeholder-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="image-placeholder-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#444"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
         <span class="image-placeholder-label">Featured Project</span>
       </div>
       <div class="portfolio-overlay">
-        <p class="portfolio-cat">Custom Furniture</p>
-        <p class="portfolio-title">Live-Edge Blackwood Dining Suite</p>
+        <p class="portfolio-cat">Outdoor Living</p>
+        <p class="portfolio-title">Hardwood Entertainer Deck — Terrigal</p>
       </div>
     </div>
     <div class="portfolio-item">
       <div class="portfolio-img">
-        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
+        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#444"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
         <span class="image-placeholder-label">Project Image</span>
       </div>
       <div class="portfolio-overlay">
-        <p class="portfolio-cat">Kitchen Joinery</p>
-        <p class="portfolio-title">Hamptons Kitchen Refit</p>
+        <p class="portfolio-cat">Flooring</p>
+        <p class="portfolio-title">Engineered Hardwood — Avoca Beach Residence</p>
       </div>
     </div>
     <div class="portfolio-item">
       <div class="portfolio-img">
-        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
+        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#444"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
         <span class="image-placeholder-label">Project Image</span>
       </div>
       <div class="portfolio-overlay">
-        <p class="portfolio-cat">Built-In Cabinetry</p>
-        <p class="portfolio-title">Floor-to-Ceiling Study Library</p>
+        <p class="portfolio-cat">Structural Framing</p>
+        <p class="portfolio-title">Home Extension Frame — Kincumber</p>
       </div>
     </div>
     <div class="portfolio-item">
       <div class="portfolio-img">
-        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
+        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#444"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
         <span class="image-placeholder-label">Project Image</span>
       </div>
       <div class="portfolio-overlay">
-        <p class="portfolio-cat">Architectural Timber</p>
-        <p class="portfolio-title">Feature Staircase</p>
+        <p class="portfolio-cat">Pergola</p>
+        <p class="portfolio-title">Alfresco Pergola — Erina</p>
       </div>
     </div>
     <div class="portfolio-item">
       <div class="portfolio-img">
-        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#5a5244"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
+        <div class="image-placeholder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:#444"><rect x="3" y="3" width="18" height="18" rx="1"/></svg></div>
         <span class="image-placeholder-label">Project Image</span>
       </div>
       <div class="portfolio-overlay">
-        <p class="portfolio-cat">Commercial</p>
-        <p class="portfolio-title">Boutique Hotel Fit-Out</p>
+        <p class="portfolio-cat">Renovation</p>
+        <p class="portfolio-title">Bathroom Transformation — Wamberal</p>
       </div>
     </div>
   </div>
@@ -1149,36 +1096,28 @@
 <section class="process" id="process">
   <div class="process-header reveal">
     <p class="section-label">How We Work</p>
-    <h2 class="section-heading">From First Word<br>to <em>Finished Piece</em></h2>
+    <h2 class="section-heading">From First Call<br>to <em>Finished Build</em></h2>
   </div>
   <div class="process-steps">
     <div class="process-step reveal">
-      <div class="step-dot-wrap">
-        <div class="step-dot"><span class="step-num">01</span></div>
-      </div>
-      <h3 class="step-title">Discovery & Conversation</h3>
-      <p class="step-desc">Every project begins with listening. We explore your vision, your space, your lifestyle, and the story you want your piece to tell. No two conversations are the same.</p>
+      <div class="step-dot-wrap"><div class="step-dot"><span class="step-num">01</span></div></div>
+      <h3 class="step-title">Your Free Quote</h3>
+      <p class="step-desc">Get in touch and we'll arrange a time to walk the site together. No obligation, no pressure — just a clear conversation about what you need and an honest quote to make it happen.</p>
     </div>
     <div class="process-step reveal reveal-delay-1">
-      <div class="step-dot-wrap">
-        <div class="step-dot"><span class="step-num">02</span></div>
-      </div>
-      <h3 class="step-title">Design & Material Selection</h3>
-      <p class="step-desc">Detailed drawings and timber selection together. You'll handle the actual planks being considered — seeing the grain, the figure, the character of the wood before a single cut is made.</p>
+      <div class="step-dot-wrap"><div class="step-dot"><span class="step-num">02</span></div></div>
+      <h3 class="step-title">Plan & Schedule</h3>
+      <p class="step-desc">Once agreed, we lock in a start date that works for you. Materials are sourced, the timeline is set, and you'll know exactly what to expect — no surprises, no hidden costs.</p>
     </div>
     <div class="process-step reveal reveal-delay-2">
-      <div class="step-dot-wrap">
-        <div class="step-dot"><span class="step-num">03</span></div>
-      </div>
-      <h3 class="step-title">Handcraft & Build</h3>
-      <p class="step-desc">The work happens in the workshop, by hand, with traditional and modern joinery techniques combined. You receive progress updates and are welcome to visit during this stage.</p>
+      <div class="step-dot-wrap"><div class="step-dot"><span class="step-num">03</span></div></div>
+      <h3 class="step-title">Build & Deliver</h3>
+      <p class="step-desc">The work is carried out with care, cleanliness, and respect for your home. You'll be kept in the loop throughout — and the site is always left tidy at the end of each day.</p>
     </div>
     <div class="process-step reveal reveal-delay-3">
-      <div class="step-dot-wrap">
-        <div class="step-dot"><span class="step-num">04</span></div>
-      </div>
-      <h3 class="step-title">Delivery & Installation</h3>
-      <p class="step-desc">White-glove delivery and installation by the same hands that built the piece. We don't leave until everything is perfect — and we don't consider a project finished until you do.</p>
+      <div class="step-dot-wrap"><div class="step-dot"><span class="step-num">04</span></div></div>
+      <h3 class="step-title">Final Walkthrough</h3>
+      <p class="step-desc">We walk through the finished job together before calling it done. Every detail is checked, every finish inspected. The job isn't complete until you're completely satisfied.</p>
     </div>
   </div>
 </section>
@@ -1187,29 +1126,29 @@
 <section class="testimonials">
   <div class="testimonials-header reveal">
     <p class="section-label">Client Stories</p>
-    <h2 class="section-heading">Told in Their <em>Own Words</em></h2>
+    <h2 class="section-heading">In Their <em>Own Words</em></h2>
   </div>
   <div class="testimonials-grid">
     <div class="testimonial reveal">
       <div class="testimonial-quote">"</div>
-      <p class="testimonial-text">The dining table Jordan built for us has become the heart of our home. Every dinner party, every holiday, every ordinary Tuesday — it's there. I can't imagine the house without it.</p>
+      <p class="testimonial-text">Lochie did our deck and it came up absolutely incredible. Turned up on time every day, worked hard, kept everything clean. Couldn't fault a thing — will be calling him for our next project without hesitation.</p>
       <div class="testimonial-divider"></div>
-      <p class="testimonial-author">Sarah & Michael T.</p>
-      <p class="testimonial-role">Residential Client · Broadbeach Waters</p>
+      <p class="testimonial-author">Mark & Julie T.</p>
+      <p class="testimonial-role">Decking Project · Terrigal</p>
     </div>
     <div class="testimonial reveal reveal-delay-1">
       <div class="testimonial-quote">"</div>
-      <p class="testimonial-text">We've worked with many craftspeople across our hotel projects. Jordan stands apart for his ability to understand the design brief and then exceed it with his own vision of what the material can do.</p>
+      <p class="testimonial-text">We had Lochie do the framing for our extension. He was professional, thorough, and really knew his stuff. The quality of the frame was excellent and the inspector was impressed. Highly recommend.</p>
       <div class="testimonial-divider"></div>
-      <p class="testimonial-author">Claire R.</p>
-      <p class="testimonial-role">Interior Architect · Brisbane</p>
+      <p class="testimonial-author">Dan R.</p>
+      <p class="testimonial-role">Home Extension · Kincumber</p>
     </div>
     <div class="testimonial reveal reveal-delay-2">
       <div class="testimonial-quote">"</div>
-      <p class="testimonial-text">What impressed me most was not just the quality of the finished kitchen — extraordinary as it is — but the integrity of the entire process. Every detail was thought through, communicated, and delivered.</p>
+      <p class="testimonial-text">Our new flooring looks absolutely stunning. Lochie was meticulous with the prep and laying — you can tell he takes genuine pride in his work. The finish is flawless. Great bloke, great tradie.</p>
       <div class="testimonial-divider"></div>
-      <p class="testimonial-author">Dr. Andrew P.</p>
-      <p class="testimonial-role">Residential Client · Mermaid Waters</p>
+      <p class="testimonial-author">Sarah P.</p>
+      <p class="testimonial-role">Flooring Installation · Avoca Beach</p>
     </div>
   </div>
 </section>
@@ -1217,12 +1156,12 @@
 <!-- CTA -->
 <section class="cta-band">
   <div class="reveal">
-    <h2 class="cta-heading">Ready to Create<br>Something <em>Lasting?</em></h2>
-    <p class="cta-sub">Commissions are taken on a limited basis to ensure every project receives the full attention it deserves. Enquire early to secure your place.</p>
+    <h2 class="cta-heading">Ready to Get<br>the Job <em>Done Right?</em></h2>
+    <p class="cta-sub">Whether it's a small repair or a full renovation, Lochie takes on a select number of projects to ensure quality is never compromised. Get in touch early to secure your spot.</p>
   </div>
   <div class="cta-actions reveal reveal-delay-1">
-    <a href="#contact" class="btn-primary" style="text-align:center">Begin a Conversation</a>
-    <a href="tel:+61400000000" class="btn-ghost" style="justify-content:flex-end"><span class="btn-ghost-line"></span> +61 4XX XXX XXX</a>
+    <a href="#contact" class="btn-primary" style="text-align:center">Get a Free Quote</a>
+    <a href="tel:0400843200" class="btn-ghost" style="justify-content:flex-end"><span class="btn-ghost-line"></span> 0400 843 200</a>
   </div>
 </section>
 
@@ -1231,24 +1170,24 @@
   <div class="contact-info">
     <div class="reveal">
       <p class="section-label">Get in Touch</p>
-      <h2 class="section-heading">Let's Begin<br><em>Your Project</em></h2>
+      <h2 class="section-heading">Let's Start<br><em>Your Build</em></h2>
     </div>
     <div class="contact-detail reveal reveal-delay-1">
       <div class="contact-item">
-        <p class="contact-item-label">Studio Location</p>
-        <p class="contact-item-value">Gold Coast, Queensland<br>Australia</p>
+        <p class="contact-item-label">Location</p>
+        <p class="contact-item-value">Central Coast, NSW<br>Australia</p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Service Areas</p>
+        <p class="contact-item-value">Terrigal · Avoca Beach · Kincumber<br>Erina · Wamberal · Gosford<br>The Entrance · Woy Woy & surrounds</p>
       </div>
       <div class="contact-item">
         <p class="contact-item-label">Email</p>
-        <p class="contact-item-value">hello@ultimatebuilds.com.au</p>
+        <p class="contact-item-value">lochiemcclelland@icloud.com</p>
       </div>
       <div class="contact-item">
         <p class="contact-item-label">Phone</p>
-        <p class="contact-item-value">+61 4XX XXX XXX</p>
-      </div>
-      <div class="contact-item">
-        <p class="contact-item-label">Service Area</p>
-        <p class="contact-item-value">Gold Coast · Brisbane<br>Hinterland &amp; Beyond</p>
+        <p class="contact-item-value">0400 843 200</p>
       </div>
     </div>
   </div>
@@ -1256,33 +1195,38 @@
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">First Name</label>
-        <input type="text" class="form-input" placeholder="Jordan">
+        <input type="text" class="form-input" placeholder="Your name">
       </div>
       <div class="form-group">
         <label class="form-label">Last Name</label>
-        <input type="text" class="form-input" placeholder="Clarke">
+        <input type="text" class="form-input" placeholder="Last name">
       </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Phone Number</label>
+      <input type="tel" class="form-input" placeholder="04XX XXX XXX">
     </div>
     <div class="form-group">
       <label class="form-label">Email Address</label>
       <input type="email" class="form-input" placeholder="your@email.com">
     </div>
     <div class="form-group">
-      <label class="form-label">Project Type</label>
+      <label class="form-label">Type of Work</label>
       <select class="form-select">
         <option value="" disabled selected>Select a service...</option>
-        <option>Custom Furniture</option>
-        <option>Kitchen Joinery</option>
-        <option>Built-In Cabinetry</option>
-        <option>Architectural Timber</option>
-        <option>Restoration</option>
-        <option>Commercial / Hospitality</option>
+        <option>Structural Framing</option>
+        <option>Decking & Outdoor Living</option>
+        <option>Flooring</option>
+        <option>Pergola / Shade Structure</option>
+        <option>Bathroom Renovation</option>
+        <option>Home Extension</option>
+        <option>General Renovation</option>
         <option>Other</option>
       </select>
     </div>
     <div class="form-group">
-      <label class="form-label">Tell Me About Your Vision</label>
-      <textarea class="form-textarea" placeholder="Describe your project, space, timeline, or simply how you'd like the finished piece to make you feel..."></textarea>
+      <label class="form-label">Tell Me About Your Project</label>
+      <textarea class="form-textarea" placeholder="Describe the work, your location, any relevant details or timeframes..."></textarea>
     </div>
     <button type="submit" class="form-submit">
       Send Enquiry
@@ -1296,17 +1240,287 @@
   <div class="footer-top">
     <div class="footer-brand">
       <div class="footer-logo">
-        <svg width="40" height="32" viewBox="0 0 200 170" fill="none">
-          <rect x="10" y="10" width="14" height="110" fill="#b8924a"/>
-          <rect x="10" y="108" width="70" height="12" fill="#b8924a"/>
-          <rect x="10" y="10" width="70" height="12" fill="#b8924a"/>
-          <polygon points="60,80 120,20 180,80" fill="#b8924a"/>
-          <polygon points="90,80 130,44 170,80" fill="#0e0d0b"/>
-          <circle cx="155" cy="68" r="8" fill="#b8924a"/>
-          <circle cx="155" cy="68" r="4" fill="#0e0d0b"/>
-        </svg>
+        <img src="data:image/png;base64,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" alt="Ultimate Builds">
       </div>
-      <p class="footer-tagline">"Built to endure.<br>Designed to inspire.<br>Crafted by hand."</p>
+      <p class="footer-tagline">"Built right.<br>Built to last.<br>Built on the Coast."</p>
       <div class="footer-social">
         <a href="#" class="social-link" aria-label="Instagram">
           <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -1314,85 +1528,70 @@
         <a href="#" class="social-link" aria-label="Facebook">
           <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
         </a>
-        <a href="#" class="social-link" aria-label="Houzz">
-          <svg viewBox="0 0 24 24"><path d="M12 2L3 7v14h18V7z"/><rect x="9" y="14" width="6" height="7"/></svg>
-        </a>
       </div>
     </div>
     <div>
       <p class="footer-col-title">Services</p>
       <div class="footer-links">
-        <a href="#" class="footer-link">Custom Furniture</a>
-        <a href="#" class="footer-link">Kitchen Joinery</a>
-        <a href="#" class="footer-link">Built-In Cabinetry</a>
-        <a href="#" class="footer-link">Architectural Timber</a>
-        <a href="#" class="footer-link">Restoration</a>
-        <a href="#" class="footer-link">Commercial</a>
+        <a href="#services" class="footer-link">Structural Framing</a>
+        <a href="#services" class="footer-link">Decking</a>
+        <a href="#services" class="footer-link">Flooring</a>
+        <a href="#services" class="footer-link">Pergolas</a>
+        <a href="#services" class="footer-link">Bathroom Renovations</a>
+        <a href="#services" class="footer-link">Extensions</a>
       </div>
     </div>
     <div>
-      <p class="footer-col-title">Studio</p>
+      <p class="footer-col-title">Navigate</p>
       <div class="footer-links">
-        <a href="#about" class="footer-link">About Jordan</a>
-        <a href="#process" class="footer-link">Our Process</a>
+        <a href="#about" class="footer-link">About Lochie</a>
+        <a href="#process" class="footer-link">How We Work</a>
         <a href="#portfolio" class="footer-link">Portfolio</a>
-        <a href="#" class="footer-link">Press & Features</a>
-        <a href="#contact" class="footer-link">Enquire</a>
+        <a href="#contact" class="footer-link">Get a Quote</a>
       </div>
     </div>
     <div>
       <p class="footer-col-title">Contact</p>
       <div class="footer-links">
-        <a href="mailto:hello@ultimatebuilds.com.au" class="footer-link">hello@ultimatebuilds.com.au</a>
-        <a href="tel:+61400000000" class="footer-link">+61 4XX XXX XXX</a>
-        <a href="#" class="footer-link">Gold Coast, QLD</a>
-        <a href="#" class="footer-link">ABN: XX XXX XXX XXX</a>
+        <a href="mailto:lochiemcclelland@icloud.com" class="footer-link">lochiemcclelland@icloud.com</a>
+        <a href="tel:0400843200" class="footer-link">0400 843 200</a>
+        <a href="#" class="footer-link">Central Coast, NSW</a>
+        <a href="#" class="footer-link">Terrigal · Avoca · Kincumber</a>
+        <a href="#" class="footer-link">Erina · Gosford · Woy Woy</a>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 <span>Ultimate Builds</span>. All rights reserved. Gold Coast, Queensland.</p>
-    <p class="footer-copy">Designed with intention. Built with craft.</p>
+    <p class="footer-copy">© 2025 <span>Ultimate Builds</span>. All rights reserved. Central Coast, NSW.</p>
+    <p class="footer-copy">Lochie McClelland · Qualified Carpenter · ABN: TBC</p>
   </div>
 </footer>
 
 <script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursor-ring');
+  const cursor = document.getElementById("cursor");
+  const ring = document.getElementById("cursor-ring");
   let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
+  document.addEventListener("mousemove", e => {
     mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
+    cursor.style.left = mx + "px"; cursor.style.top = my + "px";
   });
   function animateRing() {
-    rx += (mx - rx) * 0.15;
-    ry += (my - ry) * 0.15;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
+    rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+    ring.style.left = rx + "px"; ring.style.top = ry + "px";
     requestAnimationFrame(animateRing);
   }
   animateRing();
-
-  // Nav scroll
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
+  const nav = document.getElementById("nav");
+  window.addEventListener("scroll", () => { nav.classList.toggle("scrolled", window.scrollY > 60); });
+  const reveals = document.querySelectorAll(".reveal");
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
-
-  // Portfolio filter buttons
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
     });
   });
 </script>
